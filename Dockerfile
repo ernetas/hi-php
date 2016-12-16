@@ -59,14 +59,9 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng12-dev \
-        imagemagick \
         libgraphicsmagick1-dev \
         libmagickwand-dev \
-        libcurl3 \
-        libxslt1-dev \
-        libxslt1.1 \
         curl \
-        libcurl4-gnutls-dev \
         libicu-dev \
         libc-client2007e-dev \
         libc-client2007e \
@@ -81,4 +76,5 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         git \
         mysql-client \
         libexif-dev \
-    && apt-get autoremove -y
+    && apt-get autoremove -y \
+    && php -v
