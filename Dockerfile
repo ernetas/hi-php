@@ -55,26 +55,8 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-install -j$(nproc) gd imap gmp \
     && docker-php-ext-enable imagick mbstring json readline mongo redis facedetect gd imap gmp xmlrpc xsl readline opcache curl exif intl \
     && apt-get remove -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng12-dev \
-        libgraphicsmagick1-dev \
-        libmagickwand-dev \
         curl \
-        libicu-dev \
-        libc-client2007e-dev \
-        libc-client2007e \
-        libkrb5-dev \
-        libmysqlclient-dev \
-        libzip-dev \
-        libedit-dev \
-        libgmp-dev \
-        libpng12-dev \
-        libopencv-dev \
-        libreadline-dev \
         git \
         mysql-client \
-        libexif-dev \
     && apt-get autoremove -y \
     && php -v
