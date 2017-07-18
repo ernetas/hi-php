@@ -1,4 +1,4 @@
-FROM php:5.6.29-fpm
+FROM php:5.6-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
 COPY objdetect_c.h /usr/include/opencv2/objdetect/objdetect_c.h
