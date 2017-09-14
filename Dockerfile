@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && cd .. && rm -rf PHP-Facedetect \
     && ln -s /dev/null /dev/raw1394 \
     && docker-php-ext-install -j$(nproc) mbstring json pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache xmlrpc xsl readline \
-    && pecl install imagick APCu mongo redis \
+    && pecl install imagick APCu mongo redis gRPC \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && ln -sf /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
