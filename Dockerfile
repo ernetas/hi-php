@@ -53,10 +53,11 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && ln -sf /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && docker-php-ext-configure gmp \
     && docker-php-ext-install -j$(nproc) gd imap gmp \
-    && docker-php-ext-enable imagick mbstring json readline mongo redis facedetect gd imap gmp xmlrpc xsl readline opcache curl exif intl \
+    && docker-php-ext-enable imagick mbstring json readline mongo redis facedetect gd imap grpc gmp xmlrpc xsl readline opcache curl exif intl \
     && apt-get remove -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
         curl \
         git \
         mysql-client \
     && apt-get autoremove -y \
-    && php -v
+    && php -v \
+    && php -i
