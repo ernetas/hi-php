@@ -54,10 +54,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-configure gmp \
     && docker-php-ext-install -j$(nproc) gd imap gmp \
     && docker-php-ext-enable imagick mbstring json readline mongo redis facedetect gd imap grpc gmp xmlrpc xsl readline opcache curl exif intl \
-    && apt-get remove -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
-        curl \
-        git \
-        mysql-client \
-    && apt-get autoremove -y \
+    && groupadd -g 1001 app \
+    && useradd -m -g 1001 -u 1001 app \
     && php -v \
     && php -i
