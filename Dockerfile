@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/infusion/PHP-Facedetect.git \
     && cd PHP-Facedetect \
-    && phpize && ./configure && make -j$(nproc) && make install \
+    && git checkout 5fc335f8c6923512151cd8b551fc0323b27e1a13 && phpize && ./configure && make -j$(nproc) && make install \
     && cd .. && rm -rf PHP-Facedetect \
     && ln -s /dev/null /dev/raw1394 \
     && docker-php-ext-install -j$(nproc) mbstring json pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache xmlrpc xsl readline \
