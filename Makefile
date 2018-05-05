@@ -6,6 +6,5 @@ VERSION = debug
 all: build
 
 build:
-	docker pull php:5.6-fpm
-	docker build -t $(NAME):$(VERSION) --rm .
+	docker build --pull -t $(NAME):$(VERSION) --rm .
 
