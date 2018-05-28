@@ -1,7 +1,6 @@
 FROM php:5.6-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
-COPY objdetect_c.h /usr/include/opencv2/objdetect/objdetect_c.h
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -28,8 +27,6 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         python \
         libpng12-dev \
         libtiff5-dev \
-        libopencv-dev \
-        libopencv-objdetect-dev \
         libreadline-dev \
         libreadline6 \
         libedit-dev \
@@ -41,11 +38,6 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && chmod 755 /usr/bin/composer \
     && chown root:root /usr/bin/composer \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone https://github.com/infusion/PHP-Facedetect.git \
-    && cd PHP-Facedetect \
-    && git checkout 5fc335f8c6923512151cd8b551fc0323b27e1a13 && phpize && ./configure && make -j$(nproc) && make install \
-    && cd .. && rm -rf PHP-Facedetect \
-    && ln -s /dev/null /dev/raw1394 \
     && docker-php-ext-install -j$(nproc) mbstring json pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache xmlrpc xsl readline \
     && pecl install imagick APCu mongo redis gRPC \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -53,7 +45,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && ln -sf /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && docker-php-ext-configure gmp \
     && docker-php-ext-install -j$(nproc) gd imap gmp \
-    && docker-php-ext-enable imagick mbstring json readline mongo redis facedetect gd imap grpc gmp xmlrpc xsl readline opcache curl exif intl \
+    && docker-php-ext-enable imagick mbstring json readline mongo redis gd imap grpc gmp xmlrpc xsl readline opcache curl exif intl \
     && groupadd -g 1001 app \
     && useradd -m -g 1001 -u 1001 app \
     && php -v \
