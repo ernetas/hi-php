@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
+        libpng-dev \
 	imagemagick \
 	libgraphicsmagick1-dev \
 	libmagickwand-dev \
@@ -18,17 +18,16 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libc-client2007e-dev \
 	libc-client2007e \
 	libkrb5-dev \
-	libmysqlclient-dev \
+        libmariadbclient-dev-compat \
 	libzip-dev \
 	libexif-dev \
 	git \
         mysql-client \
         pkg-config \
         python \
-        libpng12-dev \
         libtiff5-dev \
         libreadline-dev \
-        libreadline6 \
+        libreadline7 \
         libedit-dev \
         libgmp-dev \
     && apt-get clean \
