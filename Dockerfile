@@ -39,13 +39,13 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && chown root:root /usr/bin/composer \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install -j$(nproc) mbstring json pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache xmlrpc xsl readline \
-    && pecl install imagick APCu mongo redis-4.3.0 gRPC \
+    && pecl install imagick APCu mongo redis-4.3.0 gRPC-1.29.1 \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && ln -sf /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && docker-php-ext-configure gmp \
     && docker-php-ext-install -j$(nproc) gd imap gmp \
-    && docker-php-ext-enable imagick mbstring json readline mongo redis gd imap grpc gmp xmlrpc xsl readline opcache curl exif intl \
+    && docker-php-ext-enable imagick mbstring json readline mongo redis gd imap gmp xmlrpc xsl readline opcache curl exif intl grpc \
     && groupadd -g 1001 app \
     && useradd -m -g 1001 -u 1001 app \
     && php -v \
