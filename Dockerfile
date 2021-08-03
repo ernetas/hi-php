@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         libreadline7 \
         libedit-dev \
         libgmp-dev \
+    && apt-get dist-upgrade -y \
     && apt-get clean \
     && apt-get autoremove -y \
     && curl --output composer -Ss https://getcomposer.org/download/1.5.2/composer.phar \
